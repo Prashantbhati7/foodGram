@@ -16,4 +16,5 @@ router.route('/foodpartner/login').post(loginFoodPartner)
 router.route('/foodpartner/logout').get(VerifyFoodParnter,logOutFoodPartner)
 
 
+
 export default router;

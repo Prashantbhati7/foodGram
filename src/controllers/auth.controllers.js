@@ -64,11 +64,11 @@ const loggedOutUser = AsyncHandler(async(req,res)=>{
 // food partner auth 
 
 const registerFoodPartner = AsyncHandler(async(req,res,next)=>{
-    const {fullname,email,password} = req.body;
-    if (!fullname || !email || !password || fullname?.trim() === "" || email?.trim() === "" || password?.trim() === "") throw new ApiError(400,"All fields are required",{});
+    const {name,email,password,contactName,phone,address} = req.body;
+    if (!name || !contactName || !phone ||  !address ||  !email || !password || name?.trim() === "" || email?.trim() === "" || password?.trim() === "") throw new ApiError(400,"All fields are required",{});
     const alreadyexist = await FoodPartner.findOne({email});
     if (alreadyexist) throw new ApiError(400,"User already exists",{});
-    const foodparter = await FoodPartner.create({fullname,email,password});
+    const foodparter = await FoodPartner.create({name,email,password,contactName,phone,address});
     if (!foodparter) throw new ApiError(400,"Something went wrong ,(foodparter not created)")
     const refreshToken= await foodparter.generateRefreshToken();
     const accessToken = await foodparter.generateAccessToken();

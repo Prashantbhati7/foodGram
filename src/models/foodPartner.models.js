@@ -3,7 +3,19 @@ import bcrypt from "bcrypt";
 import  jwt from "jsonwebtoken";
 
 const foodPartnerSchema = new mongoose.Schema({
-    fullname:{
+    name:{
+        type:String,
+        required:true
+    },
+    contactName:{
+        type:String,
+        required:true
+    },
+    phone:{
+        type:String,
+        required:true
+    },
+    address:{
         type:String,
         required:true
     },
